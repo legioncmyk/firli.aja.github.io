@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akun Saya - FIRLIAJA STORE</title>
+    <meta name="description" content="Kelola akun Anda, lihat riwayat pesanan, dan informasi profil di FIRLIAJA STORE.">
+    <meta name="keywords" content="akun, profil, pesanan, firliaja">
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .account-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-card {
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+        }
+        
+        .profile-avatar {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-name {
+            font-size: 1.5rem;
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-email {
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+        
+        .order-history {
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+        
+        .order-history h2 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        
+        .history-item {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .history-info h3 {
+            color: var(--yellow);
+            margin-bottom: 0.25rem;
+        }
+        
+        .history-price {
+            color: var(--orange);
+            font-weight: bold;
+        }
+        
+        .history-date {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+        
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .badge-completed {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+        
+        .badge-pending {
+            background: rgba(244, 162, 97, 0.2);
+            color: var(--orange);
+        }
+        
+        .no-history {
+            text-align: center;
+            padding: 2rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .history-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <nav class="navbar desktop-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+                <span class="logo-text">FIRLIAJA STORE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#produk">Produk</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="akun.html" class="active">Akun</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <nav class="mobile-bottom-nav">
+        <a href="../index.html" class="bottom-nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../index.html#produk" class="bottom-nav-item">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Produk</span>
+        </a>
+        <a href="payment.html" class="bottom-nav-item">
+            <span class="nav-icon">💳</span>
+            <span class="nav-label">Payment</span>
+        </a>
+        <a href="akun.html" class="bottom-nav-item active">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Akun</span>
+        </a>
+    </nav>
+    
+    <main class="container">
+        <div class="account-container">
+            <div class="profile-card">
+                <div class="profile-avatar">👤</div>
+                <h2 class="profile-name">Pelanggan FIRLIAJA</h2>
+                <p class="profile-email">customer@firliaja.com</p>
+                <p>📍 Bergabung sejak 2024</p>
+            </div>
+            
+            <div class="order-history">
+                <h2>📜 Riwayat Pesanan</h2>
+                <div id="orderHistory">
+                    <p class="no-history">Belum ada riwayat pesanan</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🔥 FIRLIAJA STORE</h4>
+                <p>Premium Digital Marketplace</p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#produk">Produk</a></li>
+                    <li><a href="payment.html">Payment</a></li>
+                    <li><a href="login.html">Login Admin</a></li>
+                    <li><a href="akun.html">Akun</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <p>WA: 0821-4304-1255</p>
+                <p>QRIS: 0851-6930-7731</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FIRLIAJA STORE. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/6282143041255?text=Halo%20admin%20FIRLIAJA%20STORE%2C%20saya%20butuh%20bantuan" class="floating-cs" target="_blank">
+        <div class="cs-icon">💬</div>
+        <span class="cs-text">CS</span>
+    </a>
+    
+    <script src="../assets/script.js"></script>
+    <script>
+        // Load order history from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+            const historyDiv = document.getElementById('orderHistory');
+            
+            if (history.length > 0) {
+                historyDiv.innerHTML = history.map(order => `
+                    <div class="history-item">
+                        <div class="history-info">
+                            <h3>${order.name}</h3>
+                            <div class="history-price">Rp ${order.price.toLocaleString('id-ID')}</div>
+                            <div class="history-date">${new Date(order.date).toLocaleString('id-ID')}</div>
+                        </div>
+                        <div class="badge badge-completed">✓ Selesai</div>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
+</body>
+</html>
