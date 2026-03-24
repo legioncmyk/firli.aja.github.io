@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - FIRLIAJA STORE</title>
+    <meta name="description" content="Halaman login admin FIRLIAJA STORE untuk mengelola marketplace.">
+    <meta name="keywords" content="login, admin, firliaja, dashboard">
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background: var(--gray);
+            border-radius: 20px;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            color: var(--orange);
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--yellow);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+            border-radius: 10px;
+            background: var(--gray-light);
+            color: var(--white);
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            transform: scale(1.02);
+        }
+        
+        .error-message {
+            background: rgba(230, 57, 70, 0.2);
+            color: var(--red);
+            padding: 0.75rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .back-link a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <nav class="navbar desktop-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+                <span class="logo-text">FIRLIAJA STORE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#produk">Produk</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="akun.html">Akun</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <nav class="mobile-bottom-nav">
+        <a href="../index.html" class="bottom-nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../index.html#produk" class="bottom-nav-item">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Produk</span>
+        </a>
+        <a href="payment.html" class="bottom-nav-item">
+            <span class="nav-icon">💳</span>
+            <span class="nav-label">Payment</span>
+        </a>
+        <a href="akun.html" class="bottom-nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Akun</span>
+        </a>
+    </nav>
+    
+    <main class="container">
+        <div class="login-container">
+            <h2>🔐 Login Admin</h2>
+            <div id="loginError" class="error-message">
+                ⚠️ Username atau password salah!
+            </div>
+            <form onsubmit="event.preventDefault(); adminLogin()">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Masukkan username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+            <div class="back-link">
+                <a href="../index.html">← Kembali ke Beranda</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🔥 FIRLIAJA STORE</h4>
+                <p>Premium Digital Marketplace</p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#produk">Produk</a></li>
+                    <li><a href="payment.html">Payment</a></li>
+                    <li><a href="login.html">Login Admin</a></li>
+                    <li><a href="akun.html">Akun</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <p>WA: 0821-4304-1255</p>
+                <p>QRIS: 0851-6930-7731</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FIRLIAJA STORE. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/6282143041255?text=Halo%20admin%20FIRLIAJA%20STORE%2C%20saya%20butuh%20bantuan" class="floating-cs" target="_blank">
+        <div class="cs-icon">💬</div>
+        <span class="cs-text">CS</span>
+    </a>
+    
+    <script src="../assets/admin.js"></script>
+</body>
+</html>
