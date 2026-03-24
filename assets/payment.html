@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - FIRLIAJA STORE</title>
+    <meta name="description" content="Selesaikan pembayaran produk digital Anda dengan mudah melalui berbagai metode pembayaran.">
+    <meta name="keywords" content="pembayaran, firliaja, dana, gopay, ovo, shopee pay, transfer bank">
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .order-summary {
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+        }
+        
+        .order-summary h2 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        
+        .product-name-order {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--yellow);
+        }
+        
+        .product-price-order {
+            font-size: 1.5rem;
+            color: var(--orange);
+            font-weight: bold;
+        }
+        
+        .payment-methods {
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .payment-methods h2 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        
+        .payment-card {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .payment-card:hover {
+            border-color: var(--orange);
+            transform: translateX(5px);
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+        }
+        
+        .payment-info {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .payment-number {
+            font-family: monospace;
+            font-size: 1rem;
+            color: var(--orange);
+        }
+        
+        .payment-owner {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        
+        .selected-payment {
+            background: rgba(76, 175, 80, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .total-amount {
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.2), rgba(244, 162, 97, 0.2));
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+        }
+        
+        .total-amount .price {
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-wa, .btn-qris {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-wa {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        
+        .btn-qris {
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            color: white;
+        }
+        
+        .btn-wa:hover, .btn-qris:hover {
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 1rem;
+                margin-bottom: 5rem;
+            }
+            
+            .selected-payment {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <nav class="navbar desktop-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+                <span class="logo-text">FIRLIAJA STORE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#produk">Produk</a></li>
+                <li><a href="payment.html" class="active">Payment</a></li>
+                <li><a href="akun.html">Akun</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <nav class="mobile-bottom-nav">
+        <a href="../index.html" class="bottom-nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../index.html#produk" class="bottom-nav-item">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Produk</span>
+        </a>
+        <a href="payment.html" class="bottom-nav-item active">
+            <span class="nav-icon">💳</span>
+            <span class="nav-label">Payment</span>
+        </a>
+        <a href="akun.html" class="bottom-nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Akun</span>
+        </a>
+    </nav>
+    
+    <main class="container">
+        <div class="payment-container">
+            <div class="order-summary">
+                <h2>📋 Ringkasan Pesanan</h2>
+                <div id="orderSummary"></div>
+            </div>
+            
+            <div class="payment-methods">
+                <h2>💳 Pilih Metode Pembayaran</h2>
+                <div id="paymentMethods"></div>
+                <div id="selectedPaymentMethod"></div>
+            </div>
+            
+            <div id="totalAmount"></div>
+            
+            <div class="action-buttons">
+                <button class="btn-wa" onclick="sendToWhatsApp()">📱 Konfirmasi via WhatsApp</button>
+                <button class="btn-qris" onclick="sendToQRIS()">📲 Bayar via QRIS</button>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🔥 FIRLIAJA STORE</h4>
+                <p>Premium Digital Marketplace</p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#produk">Produk</a></li>
+                    <li><a href="payment.html">Payment</a></li>
+                    <li><a href="login.html">Login Admin</a></li>
+                    <li><a href="akun.html">Akun</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <p>WA: 0821-4304-1255</p>
+                <p>QRIS: 0851-6930-7731</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FIRLIAJA STORE. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/6282143041255?text=Halo%20admin%20FIRLIAJA%20STORE%2C%20saya%20butuh%20bantuan" class="floating-cs" target="_blank">
+        <div class="cs-icon">💬</div>
+        <span class="cs-text">CS</span>
+    </a>
+    
+    <script src="../assets/script.js"></script>
+    <script src="../assets/payment.js"></script>
+</body>
+</html>
