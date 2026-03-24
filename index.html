@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>FIRLIAJA STORE - Premium Digital Marketplace</title>
+    <meta name="description" content="Tempat belanja produk digital premium terpercaya. Netflix, Spotify, Viu, dan berbagai voucher dengan harga terbaik.">
+    <meta name="keywords" content="firliaja, marketplace digital, beli netflix, spotify premium, voucher game, produk digital">
+    <meta name="author" content="FIRLIAJA STORE">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --black-dark: #050505;
+            --red: #e63946;
+            --red-dark: #c1121f;
+            --orange: #f4a261;
+            --yellow: #e9c46a;
+            --white: #ffffff;
+            --gray: #1e1e1e;
+            --gray-light: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--black) 0%, var(--black-dark) 100%);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(230, 57, 70, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(244, 162, 97, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: bgMove 20s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Desktop Navbar */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(230, 57, 70, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 5px var(--red), 0 0 10px var(--orange); }
+            50% { text-shadow: 0 0 20px var(--red), 0 0 30px var(--orange); }
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, var(--red), var(--orange), var(--yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--orange);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--red), var(--orange));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Bottom Navbar */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(230, 57, 70, 0.3);
+            padding: 0.5rem 1rem;
+            z-index: 1000;
+            justify-content: space-around;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .bottom-nav-item.active, .bottom-nav-item:hover {
+            color: var(--orange);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1), rgba(244, 162, 97, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(230, 57, 70, 0.3);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .glow-text {
+            background: linear-gradient(135deg, var(--red), var(--orange), var(--yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--orange);
+            margin-bottom: 2rem;
+        }
+
+        /* Search */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(244, 162, 97, 0.3);
+            border-radius: 50px;
+            background: var(--gray);
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 15px rgba(244, 162, 97, 0.3);
+        }
+
+        .search-btn {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(244, 162, 97, 0.2);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--orange);
+            box-shadow: 0 5px 25px rgba(244, 162, 97, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--red-dark), var(--orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--yellow);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-ready {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            transform: scale(1.02);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background: var(--gray);
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .no-results p {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .btn-cs {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black-dark);
+            border-top: 1px solid rgba(230, 57, 70, 0.3);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Floating CS */
+        .floating-cs {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            border-radius: 50px;
+            padding: 0.75rem 1.25rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        .floating-cs:hover {
+            transform: scale(1.05);
+        }
+
+        .cs-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-bottom-nav {
+                display: flex;
+            }
+            
+            .container {
+                padding: 1rem;
+                margin-bottom: 5rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+            
+            .product-image {
+                height: 140px;
+                font-size: 3rem;
+            }
+            
+            .product-info {
+                padding: 1rem;
+            }
+            
+            .product-name {
+                font-size: 0.9rem;
+            }
+            
+            .product-price {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .floating-cs {
+                bottom: 5rem;
+                left: 1rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            .cs-text {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <!-- Desktop Navbar -->
+    <nav class="navbar desktop-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+                <span class="logo-text">FIRLIAJA STORE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="pages/payment.html">Payment</a></li>
+                <li><a href="pages/akun.html">Akun</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navbar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="bottom-nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="#produk" class="bottom-nav-item">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Produk</span>
+        </a>
+        <a href="pages/payment.html" class="bottom-nav-item">
+            <span class="nav-icon">💳</span>
+            <span class="nav-label">Payment</span>
+        </a>
+        <a href="pages/akun.html" class="bottom-nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Akun</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="glow-text">🔥 FIRLIAJA STORE 🔥</span>
+                </h1>
+                <p class="hero-subtitle">Premium Digital Marketplace • Aman • Cepat • Terpercaya</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Cari produk digital... (Netflix, Spotify, Viu, dll)" class="search-input">
+                    <button class="search-btn" onclick="searchProducts()">🔍</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="produk" class="products-section">
+            <h2 class="section-title">✨ Produk Digital Premium ✨</h2>
+            <div id="productGrid" class="product-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+            <div id="noResults" class="no-results" style="display: none;">
+                <p>⚠️ Produk tidak ditemukan, hubungi admin</p>
+                <button class="btn-cs" onclick="window.open('https://wa.me/6282143041255?text=Halo%20admin%2C%20saya%20mencari%20produk%20yang%20tidak%20ditemukan%20di%20website', '_blank')">Hubungi Admin</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🔥 FIRLIAJA STORE</h4>
+                <p>Premium Digital Marketplace</p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#produk">Produk</a></li>
+                    <li><a href="pages/payment.html">Payment</a></li>
+                    <li><a href="pages/login.html">Login Admin</a></li>
+                    <li><a href="pages/akun.html">Akun</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <p>WA: 0821-4304-1255</p>
+                <p>QRIS: 0851-6930-7731</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FIRLIAJA STORE. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating CS Button -->
+    <a href="https://wa.me/6282143041255?text=Halo%20admin%20FIRLIAJA%20STORE%2C%20saya%20butuh%20bantuan" class="floating-cs" target="_blank">
+        <div class="cs-icon">💬</div>
+        <span class="cs-text">CS</span>
+    </a>
+
+    <script src="./assets/script.js"></script>
+    <script src="./assets/search.js"></script>
+</body>
+</html>
