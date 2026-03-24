@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FIRLIAJA STORE</title>
+    <meta name="description" content="Dashboard admin untuk mengelola produk dan order FIRLIAJA STORE.">
+    <meta name="keywords" content="dashboard, admin, firliaja, manajemen">
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--gray);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+        }
+        
+        .stat-card h3 {
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--yellow);
+        }
+        
+        .orders-section {
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+        
+        .orders-section h2 {
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        
+        .order-card {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(244, 162, 97, 0.2);
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .order-id {
+            font-weight: bold;
+            color: var(--yellow);
+        }
+        
+        .order-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .status-pending {
+            background: rgba(244, 162, 97, 0.2);
+            color: var(--orange);
+        }
+        
+        .status-processed {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+        }
+        
+        .status-completed {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+        
+        .status-cancelled {
+            background: rgba(230, 57, 70, 0.2);
+            color: var(--red);
+        }
+        
+        .order-details {
+            margin: 0.5rem 0;
+        }
+        
+        .order-details p {
+            margin: 0.25rem 0;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .order-actions button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-process {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .btn-complete {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-cancel {
+            background: var(--red);
+            color: white;
+        }
+        
+        .btn-logout {
+            padding: 0.5rem 1rem;
+            background: var(--red);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .no-orders {
+            text-align: center;
+            padding: 2rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .order-actions {
+                flex-direction: column;
+            }
+            
+            .order-actions button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <nav class="navbar desktop-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+                <span class="logo-text">FIRLIAJA STORE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#produk">Produk</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="akun.html">Akun</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <nav class="mobile-bottom-nav">
+        <a href="../index.html" class="bottom-nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../index.html#produk" class="bottom-nav-item">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Produk</span>
+        </a>
+        <a href="payment.html" class="bottom-nav-item">
+            <span class="nav-icon">💳</span>
+            <span class="nav-label">Payment</span>
+        </a>
+        <a href="akun.html" class="bottom-nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Akun</span>
+        </a>
+    </nav>
+    
+    <main class="container">
+        <div class="dashboard-header">
+            <h1>📊 Admin Dashboard</h1>
+            <button class="btn-logout" onclick="localStorage.removeItem('adminLoggedIn'); window.location.href='login.html'">Logout</button>
+        </div>
+        
+        <div class="stats-grid" id="productStats"></div>
+        
+        <div class="orders-section">
+            <h2>📋 Daftar Order</h2>
+            <div id="ordersList"></div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🔥 FIRLIAJA STORE</h4>
+                <p>Premium Digital Marketplace</p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#produk">Produk</a></li>
+                    <li><a href="payment.html">Payment</a></li>
+                    <li><a href="login.html">Login Admin</a></li>
+                    <li><a href="akun.html">Akun</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <p>WA: 0821-4304-1255</p>
+                <p>QRIS: 0851-6930-7731</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FIRLIAJA STORE. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/6282143041255?text=Halo%20admin%20FIRLIAJA%20STORE%2C%20saya%20butuh%20bantuan" class="floating-cs" target="_blank">
+        <div class="cs-icon">💬</div>
+        <span class="cs-text">CS</span>
+    </a>
+    
+    <script src="../assets/script.js"></script>
+    <script src="../assets/admin.js"></script>
+</body>
+</html>
